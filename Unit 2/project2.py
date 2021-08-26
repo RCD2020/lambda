@@ -65,6 +65,10 @@ df['grade'] = df['grade'].apply(grader)
 grader2 = lambda grade : grades[grade[0]] * int(grade[1])
 df['sub_grade'] = df['sub_grade'].apply(grader2)
 
+for x in df.columns:
+    if df[x].nunique() > 100 and df[x].dtype == object:
+        df = df.drop(columns=x)
+
 # for x in df.columns:
 #     if df[x].dtype == object:
 #         df = df.drop(columns=x)
@@ -88,6 +92,7 @@ df.loc[df['home_ownership'] == 'RENT', 'renting'] = 1
 df.loc[df['renting'] != 1, 'renting'] = 0
 df = df.drop(columns='home_ownership')
 
+df.to_csv('files/lending_edited.csv')
 
 target = 'renting'
 X = df.drop(target, axis=1)
@@ -171,7 +176,7 @@ data = {
 }
 importances = pd.DataFrame(data, index=X_val.columns)
 importances = importances.sort_values(by='imp_mean', key=abs)
-importances.to_csv('important.csv')
+# importances.to_csv('files/important.csv')
 print(importances.tail(20))
 
 
