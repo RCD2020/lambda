@@ -1,11 +1,5 @@
 import pandas as pd
 
-data = pd.DataFrame({
-    0: [0, 3, 6],
-    1: [1, 4, 7],
-    2: [2, 5, 8]
-})
-
 def null_count(df):
     "Takes a pandas.DataFrame and returns the total null values."
 
