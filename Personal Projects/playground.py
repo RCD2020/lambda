@@ -1,5 +1,1 @@
-listy = ['a', 'b', 'cad']
-
-test = 'text'
-
-print(test[:-1])
+print('oh boy i sure do hope that this works and does not end up being a complete epic fail omegalul epic')
