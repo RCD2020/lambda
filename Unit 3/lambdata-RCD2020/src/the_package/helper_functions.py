@@ -17,13 +17,13 @@ class DataFrameInfo:
 
 
 def null_count(df: pd.DataFrame):
-    """Takes a pandas.DataFrame, and returns th total null count in that dataframe."""
+    """Takes a pandas.DataFrame, and returns the total null count in that dataframe."""
 
     return df.isnull().sum().sum()
 
 
 def null_count2(df: pd.DataFrame):
-    """Takes a pandas.DataFrame, and returns th total null count in that dataframe.
+    """Takes a pandas.DataFrame, and returns the total null count in that dataframe.
     
     A secondary null_count function that utilizes the DataFrameInfo class to calculate the null count.
     It is slower than null_count, but oh well. Assignments be like"""
