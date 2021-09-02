@@ -1,1 +1,5 @@
-print('oh boy i sure do hope that this works and does not end up being a complete epic fail omegalul epic')
+def rando():
+    """# cool beans"""
+    return True
+
+rando()
