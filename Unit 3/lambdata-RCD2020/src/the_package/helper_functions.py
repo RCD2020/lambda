@@ -48,8 +48,8 @@ def split_dates(date_series: pd.Series):
     for x in date_series:
         points = x.split('/')
 
-        dates['month'].append(points[0])
-        dates['day'].append(points[1])
-        dates['year'].append(points[2])
+        dates['month'].append(int(points[0]))
+        dates['day'].append(int(points[1]))
+        dates['year'].append(int(points[2]))
 
     return pd.DataFrame(dates)
