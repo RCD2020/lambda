@@ -5,7 +5,8 @@ Robert Davis 2021/09/03"""
 
 
 from acme import Product
-from acme_report import *
+from acme_report import ADJECTIVES, NOUNS
+from acme_report import generate_products, inventory_report
 
 
 def test_default_product_price():

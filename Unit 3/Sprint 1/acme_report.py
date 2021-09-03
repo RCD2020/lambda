@@ -57,7 +57,7 @@ def inventory_report(prodList: Product):
         tprice += prod.price
         tweight += prod.weight
         tflammability += prod.flammability
-    
+
     numProd = len(prodList)
 
     mprice = tprice / numProd
