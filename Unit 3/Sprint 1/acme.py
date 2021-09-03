@@ -4,6 +4,7 @@ Robert Davis 2021/09/03"""
 
 from random import randint
 
+
 class Product:
     """A class used for storing data about products."""
 
@@ -16,17 +17,9 @@ class Product:
         self.flammability = flammability
         self.identifier = randint(1000000, 10000000)
 
-    def __repr__(self):
-        return f"""Product(
-    name='{self.name}',
-    price={self.price},
-    weight={self.weight},
-    flammability={self.flammability},
-    identifier={self.identifier}
-)"""
-
     def stealability(self):
-        """Returns how stealable a product is as a string based on it's price divided by it's weight."""
+        """Returns how stealable a product is as a string
+        based on it's price divided by it's weight."""
 
         steal = self.price / self.weight
 
@@ -38,7 +31,9 @@ class Product:
             return 'Very stealable!'
 
     def explode(self):
-        "Explodes the product. Intensity depends on weight and flammability. Returns string."
+        """Explodes the product.
+        Intensity depends on weight and flammability.
+        Returns string."""
 
         boom = self.flammability * self.weight
 
@@ -51,23 +46,20 @@ class Product:
 
 
 class BoxingGlove(Product):
-    """An inheritance of the Product class based completely around the product being a boxing glove.
-    
-    Adds a method called punch() that just punches people, and boxing gloves are 100% less explodable!"""
+    """An inheritance of the Product class based
+    completely around the product being a boxing glove.\n
+    Adds a method called punch() that just punches people,
+    and boxing gloves are 100% less explodable!"""
 
     def __init__(self, name, price=10, weight=10, flammability=0.5):
         """Initiates the boxing glove"""
 
-        super().__init__(name, price=price, weight=weight, flammability=flammability)
-
-    def __repr__(self):
-        return f"""BoxingGlove(
-    name='{self.name}',
-    price={self.price},
-    weight={self.weight},
-    flammability={self.flammability},
-    identifier={self.identifier}
-)"""
+        super().__init__(
+            name,
+            price=price,
+            weight=weight,
+            flammability=flammability
+        )
 
     def explode(self):
         """Explodes the boxing glove."""

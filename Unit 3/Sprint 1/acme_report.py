@@ -11,15 +11,18 @@ NOUNS = ['Anvil', 'Catapult', 'Disguise', 'Mousetrap', '???']
 
 
 def generate_products(numProducts=30):
-    """Generates random acme.Product objects, use numProducts to specify how many.
-    
+    """Generates random acme.Product objects,
+    use numProducts to specify how many.\n
     Returns a list of acme.Product."""
 
     products = []
 
     for x in range(numProducts):
+        adjin = randint(0, len(ADJECTIVES)-1)
+        nonin = randint(0, len(NOUNS)-1)
+
         prod = Product(
-            f"{ADJECTIVES[randint(0, len(ADJECTIVES)-1)]} {NOUNS[randint(0, len(NOUNS)-1)]}",
+            f"{ADJECTIVES[adjin]} {NOUNS[nonin]}",
             randint(5, 101),
             randint(5, 101),
             randint(0, 26) / 10
@@ -31,12 +34,9 @@ def generate_products(numProducts=30):
 
 
 def inventory_report(prodList: Product):
-    """Takes a list of acme.Product.
-    
-    Prints a summary of the products.
-    
-    Returns a dictionary containing the information.
-    
+    """Takes a list of acme.Product.\n
+    Prints a summary of the products.\n
+    Returns a dictionary containing the information.\n
     ```json
     {
         "unique": amount of unique,
