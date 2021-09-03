@@ -23,9 +23,9 @@ def generate_products(numProducts=30):
 
         prod = Product(
             f"{ADJECTIVES[adjin]} {NOUNS[nonin]}",
-            randint(5, 101),
-            randint(5, 101),
-            randint(0, 26) / 10
+            randint(5, 100),
+            randint(5, 100),
+            randint(0, 25) / 10
         )
 
         products.append(prod)
