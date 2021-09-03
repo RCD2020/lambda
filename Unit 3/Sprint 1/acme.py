@@ -16,12 +16,23 @@ class Product:
         self.flammability = flammability
         self.identifier = randint(1000000, 10000000)
 
+    def __repr__(self):
+        return f"""Product(
+    name='{self.name}',
+    price={self.price},
+    weight={self.weight},
+    flammability={self.flammability},
+    identifier={self.identifier}
+)"""
+
     def stealability(self):
         """Returns how stealable a product is as a string based on it's price divided by it's weight."""
 
         steal = self.price / self.weight
 
-        if steal >= .5 and steal < 1:
+        if steal < .5:
+            return 'Not so stealable...'
+        elif steal < 1:
             return 'Kinda stealable.'
         else:
             return 'Very stealable!'
@@ -31,10 +42,12 @@ class Product:
 
         boom = self.flammability * self.weight
 
-        if boom >= 10 and boom < 50:
+        if boom < 10:
+            return '...fizzle.'
+        elif boom < 50:
             return '...boom!'
         else:
-            return '...BADOOM!!'
+            return '...BABOOM!!'
 
 
 class BoxingGlove(Product):
@@ -46,6 +59,15 @@ class BoxingGlove(Product):
         """Initiates the boxing glove"""
 
         super().__init__(name, price=price, weight=weight, flammability=flammability)
+
+    def __repr__(self):
+        return f"""BoxingGlove(
+    name='{self.name}',
+    price={self.price},
+    weight={self.weight},
+    flammability={self.flammability},
+    identifier={self.identifier}
+)"""
 
     def explode(self):
         """Explodes the boxing glove."""
