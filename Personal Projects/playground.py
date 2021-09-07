@@ -1,5 +1,4 @@
-def rando():
-    """# cool beans"""
-    return True
+from random import randint
 
-rando()
+for x in range(10):
+    print(randint(0, 0))
