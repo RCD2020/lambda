@@ -33,7 +33,7 @@ if __name__ == '__main__':
     df = pd.read_csv(PATH)
 
     con = sqlite3.connect('/Users/colby/Documents/Lambda/03 Unit 3/\
-lambda/Unit 3/rpg/rpgholidaymove_buddyiq.sqlite3')
+lambda/Unit 3/rpg/holidaymove_buddyiq.sqlite3')
     cur = con.cursor()
 
     df.to_sql('review', con=con)
