@@ -34,35 +34,48 @@ def lite_connect(path):
     return con, cur
 
 
-RPG_TABLES = {
-    'charactercreator_character': '''SELECT character_id, name, level, \
+ITEMS = '''SELECT character_id,  name
+FROM charactercreator_character_inventory
+JOIN armory_item
+ON charactercreator_character_inventory.item_id = armory_item.item_id
+WHERE armory_item.item_id NOT IN \
+(SELECT item_ptr_id FROM armory_weapon);'''
+
+
+WEAPONS = '''SELECT character_id,  name
+FROM charactercreator_character_inventory
+JOIN armory_item
+ON charactercreator_character_inventory.item_id = armory_item.item_id
+WHERE armory_item.item_id IN \
+(SELECT item_ptr_id FROM armory_weapon);'''
+
+
+CHARACTERS = '''SELECT character_id, name, level, \
 exp, hp, strength, intelligence, dexterity, wisdom
-FROM charactercreator_character''',
-    'charactercreator_character_inventory': '''SELECT id, character_id,\
- item_id
-FROM charactercreator_character_inventory''',
-    'armory_item': '''SELECT item_id, name, value, weight
-FROM armory_item''',
-    'armory_weapon': '''SELECT item_ptr_id, power
-FROM armory_weapon'''
-}
-
-
-
+FROM charactercreator_character'''
 
 
 if __name__ == '__main__':
-    # db = mongo_connect(sys.argv[1])
+    db = mongo_connect(sys.argv[1])
     con, cur = lite_connect('/Users/colby/Documents/Lambda/03 Unit 3/\
 lambda/Unit 3/rpg/rpg_db.sqlite3')
 
-    for name, sql in RPG_TABLES.items():
-        rows = cur.execute(sql).fetchall()
-        print(rows)
-        # columns = [d[0] for d in cur.description]
+    rows = cur.execute(CHARACTERS).fetchall()
+    data = [[
+        ide, name, level, exp, hp, stre, inte, dex, wis, [], []
+    ] for ide, name, level, exp, hp, stre, inte, dex, wis in rows]
+    columns = [d[0] for d in cur.description]
+    columns.append('items')
+    columns.append('weapons')
+    
+    rows = cur.execute(ITEMS).fetchall()
+    for ide, name in rows:
+        data[ide-1][9].append(name)
 
-        # table = [dict(zip(columns, row)) for row in rows]
+    rows = cur.execute(WEAPONS).fetchall()
+    for ide, name in rows:
+        data[ide-1][10].append(name)
 
-        # exec(f'db.{name}.insert_many(table)')
+    table = [dict(zip(columns[1:], row[1:])) for row in data]
 
-    # print(db.list_collection_names())
+    db.rpg.insert_many(table)
