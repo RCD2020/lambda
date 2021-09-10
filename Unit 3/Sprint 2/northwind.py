@@ -46,7 +46,7 @@ ORDER BY Total DESC
 LIMIT 1;'''
 
 
-most_territories = '''SELECT Id, LastName, FirstName, Territories
+most_territories = '''SELECT Id, FirstName, LastName, Territories
 FROM Employee
 JOIN (
     SELECT EmployeeId, COUNT(*) as Territories
