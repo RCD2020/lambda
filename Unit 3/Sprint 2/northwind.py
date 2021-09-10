@@ -4,7 +4,7 @@ Analyes data from northwind_small.sqlite3
 Robert Davis
 2021/09/10"""
 
- 
+
 import sqlite3
 
 
@@ -26,12 +26,12 @@ FROM (
 GROUP BY City;'''
 
 
-ten_most_expensive = '''SELECT *
+ten_most_expensive = '''SELECT ProductName, UnitPrice, CompanyName
 FROM Product
 JOIN (
-	SELECT Id, CompanyName
-	FROM Supplier
-	) as Sup
+    SELECT Id, CompanyName
+    FROM Supplier
+    ) as Sup
 ON Product.SupplierId = Sup.Id
 ORDER BY UnitPrice DESC
 LIMIT 10;'''
@@ -46,21 +46,21 @@ ORDER BY Total DESC
 LIMIT 1;'''
 
 
-most_territories = '''SELECT *
+most_territories = '''SELECT Id, LastName, FirstName, Territories
 FROM Employee
 JOIN (
-	SELECT EmployeeId, COUNT(*) as Territories
-	FROM EmployeeTerritory
-	GROUP BY EmployeeId
-	) as EmpTerr
+    SELECT EmployeeId, COUNT(*) as Territories
+    FROM EmployeeTerritory
+    GROUP BY EmployeeId
+    ) as EmpTerr
 ON Employee.Id = EmpTerr.EmployeeId
 ORDER BY Territories DESC
 LIMIT 1;'''
 
 
 if __name__ == '__main__':
-    con = sqlite3.connect('/Users/colby/Documents/Lambda/03 Unit 3/'
-    'lambda/Unit 3/Sprint 2/northwind_small.sqlite3')
+    con = sqlite3.connect('/Users/colby/Documents/Lambda/03 Unit 3/\
+lambda/Unit 3/Sprint 2/northwind_small.sqlite3')
     cur = con.cursor()
 
     cur.execute(expensive_items)

@@ -48,7 +48,7 @@ def extract(cur, sql, text=None):
     for x in cur:
         data = x[0]
 
-    if text != None:
+    if text is not None:
         print(text.format(data))
 
     return data
@@ -56,8 +56,8 @@ def extract(cur, sql, text=None):
 
 if __name__ == '__main__':
     # Make the database
-    con = sqlite3.connect('/Users/colby/Documents/Lambda/03 Unit 3/'
-    'lambda/Unit 3/Sprint 2/demo_data.sqlite3')
+    con = sqlite3.connect('/Users/colby/Documents/Lambda/03 Unit 3/\
+lambda/Unit 3/Sprint 2/demo_data.sqlite3')
     cur = con.cursor()
 
     cur.execute(TABLE)
@@ -68,9 +68,9 @@ if __name__ == '__main__':
 
     # Read the database
     extract(cur, row_count, '\033[34mThere are {} rows.')
-    extract(cur, xy_at_least_5, '\033[36mThere are {} '
-    'rows where x and y are at least 5.')
-    extract(cur, unique_y, '\033[34mThere are {} unique y '
-    'values.')
+    extract(cur, xy_at_least_5, '\033[36mThere are {} \
+rows where x and y are at least 5.')
+    extract(cur, unique_y, '\033[34mThere are {} unique y \
+values.')
 
     con.close()
