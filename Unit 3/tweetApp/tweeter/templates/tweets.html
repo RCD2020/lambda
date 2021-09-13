@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <h2>Add Tweet</h2>
+        <h4><a href="/">Home</a></h4>
+        <form action="/tweets" method="POST">
+            <textarea name="tweet" cols="30" rows="10" maxlength="280"></textarea>
+            <br>
+            <select name="userid">
+                {% for user in users %}
+                <option value="{{user.id}}">{{user.name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Tweet">
+        </form>
+
+        <h2>Tweets</h2>
+        {% for tweet in tweets %}
+        <p>{{ users[tweet.userid-1].name }}: {{ tweet.text }}</p>
+        {% endfor %}
+    </body>
+</html>
