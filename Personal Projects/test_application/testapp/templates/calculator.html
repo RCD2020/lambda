@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Calculator</title>
+    </head>
+    <body>
+        
+        <h1>Calculator</h1>
+        <h3><a href="./">Home</a></h3>
+
+        <form action="/calculator" method="POST">
+            <select name="richguyOut">
+                {% for dude in richDudes %}
+                <option value="{{dude.id}}">{{dude.name}}: ${{dude.networth}}mill</option>
+                {% endfor %}
+            </select>
+            <select name="productOut">
+                {% for product in products %}
+                <option value="{{product.id}}">{{product.name}}: ${{product.price}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Calculate">
+        </form>
+
+        <h2>Calculated:</h2>
+        <p>With {{calculation.richGuy}}'s networth of {{calculation.netWorth}} million, you can buy {{calculation.amount}} {{calculation.product}}s at ${{calculation.price}}.</p>
+
+    </body>
+</html>

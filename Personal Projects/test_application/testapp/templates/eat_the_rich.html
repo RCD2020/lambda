@@ -1,0 +1,35 @@
+<html>
+
+    <head>
+
+        <title>Rich Dudes</title>
+
+    </head>
+
+    <body>
+        
+        <h1>Rich Dudes</h1>
+        <h3><a href="./">Home</a></h3>
+
+        <h2>Add Rich Dude</h2>
+        <form action="/eat_the_rich" method="POST">
+            <input type="text" name="name">
+            <br>
+            <input type="number" name="networth"> million
+            <br>
+            <input type="submit" value="Add">
+        </form>
+
+        <h2>Rich Dudes</h2>
+        <h4>id, name, networth</h4>
+        <table>
+            {% for dude in dudes %}
+            <tr>
+                <td>{{dude.id}}: {{dude.name}}, ${{dude.networth}} million</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </body>
+
+</html>
